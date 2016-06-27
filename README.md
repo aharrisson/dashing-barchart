@@ -1,4 +1,4 @@
-# dashing-barchart
+# dashing-chartjs
 
 ## Preview
 
@@ -7,7 +7,7 @@
 ## Description
 
 Simple [Dashing](http://shopify.github.com/dashing) widget (and associated job)
-to render bar charts. Uses [Chart.js](http://www.chartjs.org/) library.
+to render charts. Uses [Chart.js](http://www.chartjs.org/) library.
 
 ## Dependencies
 
@@ -16,14 +16,14 @@ and copy it into `assets/javascripts`.
 
 ## Usage
 
-Create the directory `widgets/bar_chart` and copy this widget's files
+Create the directory `widgets/chartjs` and copy this widget's files
 into that folder.
 
 Add the following code on the desired dashboard:
 
 ```erb
 <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
-  <div data-id="barchart" data-view ="BarChart" data-title="Bar Chart" data-moreinfo=""></div>
+  <div data-id="barchart" data-view="Chartjs" data-type="bar" data-title="Bar Chart" data-moreinfo=""></div>
 </li>
 ```
 
@@ -51,7 +51,7 @@ data = [
 ]
 options = { scaleFontColor: '#fff' }
 
-send_event('barchart', { labels: labels, datasets: data, options: options })
+send_event('barchart', { data: { labels: labels, datasets: data }, options: options })
 ```
 
 ### Title Position
@@ -72,7 +72,7 @@ needed you can change their value using the `data-` attributes. Example:
 
 ```erb
 <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
-  <div data-id="barchart" data-view ="BarChart" data-left-margin="5" data-top-margin="10"></div>
+  <div data-id="barchart" data-view ="Chartjs" data-left-margin="5" data-top-margin="10"></div>
 </li>
 ```
 
@@ -82,7 +82,7 @@ the widget. If not, set their values also using the `data-` attributes:
 
 ```erb
 <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
-  <div data-id="barchart" data-view ="BarChart" data-right-margin="10" data-bottom-margin="5"></div>
+  <div data-id="barchart" data-view ="Chartjs" data-right-margin="10" data-bottom-margin="5"></div>
 </li>
 ```
 
@@ -91,6 +91,7 @@ the widget. If not, set their values also using the `data-` attributes:
 - [Jorge Morgado](https://github.com/jorgemorgado) (Author)
 - [Maomao Liu](https://github.com/maomaoliu)
 - [Chris Hughes](https://github.com/chrisspang)
+- [Anders Harrisson](https://github.com/aharrisson)
 
 ## License
 

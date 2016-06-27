@@ -1,4 +1,4 @@
-class Dashing.BarChart extends Dashing.Widget
+class Dashing.Chartjs extends Dashing.Widget
 
   ready: ->
     # Margins: zero if not set or the same as the opposite margin
@@ -24,28 +24,19 @@ class Dashing.BarChart extends Dashing.Widget
     canvas.append("<canvas width=\"#{width}\" height=\"#{height}\" class=\"chart-area\"/>")
 
     @ctx = $(@node).find('.chart-area')[0].getContext('2d')
-    @myData = {
-      labels: @get('labels')
-      datasets: @get('datasets')
-    }
 
-    @myChart = new Chart(@ctx).Bar(@myData, $.extend({
-      responsive: false
-      barShowStroke: true
-      scaleShowVerticalLines: false
-      maintainAspectRatio: true
-    }, @get('options')))
+    @myChart = new Chart(@ctx, {
+      type: @get('type'),
+      data: @get('data'),
+      options: @get('options')
+    })
 
   onData: (data) ->
-    # Load new values, ie,
-    #   @myChart.datasets[0].bars[0].value = data.datasets[0].data[0]
-    #   @myChart.datasets[0].bars[1].value = data.datasets[0].data[1]
-    #   ...
-    #   @myChart.datasets[1].bars[0].value = data.datasets[1].data[0]
-    #   ...
-    if @myChart && data.datasets
-      for i in [0..@myChart.datasets.length - 1]
-        for j in [0..@myChart.datasets[i].bars.length - 1]
-          @myChart.datasets[i].bars[j].value = data.datasets[i].data[j]
-
+    if @myChart
+        if data.data
+            @myChart.config.data = data.data
+        if data.type
+            @myChart.config.type = data.type
+        if data.options
+            @myChart.config.data = data.options
       @myChart.update()
