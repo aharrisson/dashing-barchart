@@ -33,10 +33,10 @@ class Dashing.Chartjs extends Dashing.Widget
 
   onData: (data) ->
     if @myChart
-        if data.data
-            @myChart.config.data = data.data
-        if data.type
-            @myChart.config.type = data.type
-        if data.options
-            @myChart.config.data = data.options
+      if data.data
+        @myChart.config.data = data.data
+      if data.type
+        @myChart.config.type = data.type
+      if data.options
+        @myChart.config.data = data.options
       @myChart.update()
